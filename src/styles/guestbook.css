@@ -19,7 +19,19 @@
   background: var(--color-bg-card);
   border-color: var(--color-border);
   border-radius: var(--radius);
-  box-shadow: 0 1px 3px var(--color-shadow);
+  box-shadow: 0 2px 8px var(--color-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.guestbook-form-card.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
 }
 
 .guestbook-form-card .card-body {
@@ -64,7 +76,7 @@
   color: var(--color-danger);
 }
 
-/* Controls row uses react-bootstrap Form controls */
+/* Controls row */
 .guestbook-controls .form-control,
 .guestbook-controls .form-select {
   border-color: var(--color-border);
@@ -103,13 +115,14 @@
   background: var(--color-bg-card);
   border-color: var(--color-border);
   border-radius: var(--radius);
-  transition: border-color var(--transition);
+  transition: all 0.3s ease;
   animation: slideUp 0.3s ease;
-  box-shadow: 0 1px 2px var(--color-shadow);
+  box-shadow: 0 1px 4px var(--color-shadow);
 }
 
 .guestbook-entry-card.card:hover {
   border-color: var(--color-border-hover);
+  box-shadow: 0 4px 16px var(--color-shadow);
 }
 
 .entry-replies {
@@ -201,12 +214,13 @@
   color: var(--color-text-secondary);
   font-size: 0.82rem;
   cursor: pointer;
-  transition: all var(--transition);
+  transition: all 0.25s ease;
 }
 
 .reaction-btn:hover {
   border-color: var(--color-primary);
   background: var(--color-primary-light);
+  transform: scale(1.1);
 }
 
 .reaction-btn.reacted {

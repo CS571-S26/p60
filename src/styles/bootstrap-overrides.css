@@ -44,7 +44,7 @@ html[data-theme='dark'] {
   --bs-primary-rgb: 59, 130, 246;
 }
 
-/* Primary / outline buttons track site blues */
+/* Primary / outline buttons */
 .btn-primary {
   --bs-btn-bg: var(--color-primary);
   --bs-btn-border-color: var(--color-primary);
@@ -56,6 +56,12 @@ html[data-theme='dark'] {
   --bs-btn-disabled-border-color: var(--color-primary);
   font-weight: 500;
   border-radius: var(--radius-sm);
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .btn-outline-primary {
@@ -68,6 +74,7 @@ html[data-theme='dark'] {
   --bs-btn-active-border-color: var(--color-primary);
   font-weight: 500;
   border-radius: var(--radius-sm);
+  transition: all 0.25s ease;
 }
 
 .btn-outline-secondary {
@@ -80,6 +87,7 @@ html[data-theme='dark'] {
   --bs-btn-active-border-color: var(--color-primary);
   font-weight: 500;
   border-radius: var(--radius-sm);
+  transition: all 0.25s ease;
 }
 
 .btn-outline-danger {
@@ -90,6 +98,7 @@ html[data-theme='dark'] {
   --bs-btn-hover-color: #fff;
   font-weight: 500;
   border-radius: var(--radius-sm);
+  transition: all 0.25s ease;
 }
 
 /* Navbar: match original 70px shell */
@@ -142,7 +151,7 @@ html[data-theme='dark'] {
   padding-bottom: 1.5rem;
 }
 
-/* Search input group: one continuous rounded field */
+/* Search input group */
 .search-bar .input-group {
   border-radius: var(--radius);
   overflow: hidden;
@@ -174,4 +183,9 @@ html[data-theme='dark'] {
 /* Muted text inside guest cards */
 .guestbook-entry-card .text-muted {
   color: var(--color-text-muted) !important;
+}
+
+/* Card hover transitions */
+.card {
+  transition: all 0.3s ease;
 }
