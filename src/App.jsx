@@ -3,12 +3,17 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import ScrollProgress from './components/ScrollProgress';
+import BackToTop from './components/BackToTop';
+import CommandPalette from './components/CommandPalette';
+import SkipLink from './components/SkipLink';
 import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Guestbook from './pages/Guestbook';
 import './styles/global.css';
 import './styles/bootstrap-overrides.css';
+import './styles/extras.css';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -30,9 +35,11 @@ function App() {
 
   return (
     <>
+      <SkipLink targetId="main-content" />
       <ScrollToTop />
+      <ScrollProgress />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<Home onToggleTheme={toggleTheme} />} />
           <Route path="/about" element={<About />} />
@@ -41,6 +48,8 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <BackToTop />
+      <CommandPalette theme={theme} onToggleTheme={toggleTheme} />
     </>
   );
 }

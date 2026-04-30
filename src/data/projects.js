@@ -76,8 +76,8 @@ const projects = [
     fullDescription: "A personal portfolio website built with React and Vite. Features include dark/light mode with localStorage persistence, a projects page with multi-criteria filtering (search, category, tech stack), and an interactive guestbook with emoji reactions, sorting, and search. Fully responsive with scroll-triggered animations and deployed to GitHub Pages.",
     techStack: ["React", "CSS", "Vite"],
     category: "Frontend",
-    github: "https://github.com/esh-07/portfolio",
-    liveDemo: "https://esh-07.github.io/portfolio/",
+    github: "https://github.com/CS571-S26/p60",
+    liveDemo: "https://cs571-s26.github.io/p60/",
     images: [
       "https://placehold.co/800x450/2563eb/bfdbfe?text=Portfolio+Home",
       "https://placehold.co/800x450/1d4ed8/93c5fd?text=Projects+Page"

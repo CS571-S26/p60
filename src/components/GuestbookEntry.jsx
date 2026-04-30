@@ -45,7 +45,7 @@ function GuestbookEntry({ entry, onReact, onDelete, onAddReply, canDelete, reply
     <Card className="guestbook-entry-card">
       <Card.Body>
         <div className="entry-header">
-          <span className="entry-author">{entry.name}</span>
+          <h3 className="entry-author">{entry.name}</h3>
           <span className="entry-time" title={new Date(entry.timestamp).toLocaleString()}>
             {timeAgo(entry.timestamp)}
           </span>

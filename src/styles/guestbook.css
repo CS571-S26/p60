@@ -160,6 +160,8 @@
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-text);
+  margin: 0;
+  line-height: 1.4;
 }
 
 .entry-time {

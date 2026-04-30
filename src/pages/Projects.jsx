@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import projects, { categories, allTechStacks } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
 import ProjectModal from '../components/ProjectModal';
+import { useBookmarks } from '../hooks/useBookmarks';
 import '../styles/projects.css';
 
 function Projects() {
@@ -12,6 +13,8 @@ function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [activeTech, setActiveTech] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [favoritesOnly, setFavoritesOnly] = useState(false);
+  const { toggle: toggleBookmark, isBookmarked, count: bookmarkCount } = useBookmarks();
 
   const toggleTech = (tech) => {
     setActiveTech((prev) =>
@@ -23,9 +26,11 @@ function Projects() {
     setSearch('');
     setActiveCategory('All');
     setActiveTech([]);
+    setFavoritesOnly(false);
   };
 
-  const hasFilters = search || activeCategory !== 'All' || activeTech.length > 0;
+  const hasFilters =
+    search || activeCategory !== 'All' || activeTech.length > 0 || favoritesOnly;
 
   const filtered = useMemo(() => {
     return projects.filter((project) => {
@@ -42,9 +47,11 @@ function Projects() {
         activeTech.length === 0 ||
         activeTech.every((tech) => project.techStack.includes(tech));
 
-      return matchesSearch && matchesCategory && matchesTech;
+      const matchesFavorites = !favoritesOnly || isBookmarked(project.id);
+
+      return matchesSearch && matchesCategory && matchesTech && matchesFavorites;
     });
-  }, [search, activeCategory, activeTech]);
+  }, [search, activeCategory, activeTech, favoritesOnly, isBookmarked]);
 
   return (
     <section className="projects">
@@ -98,6 +105,31 @@ function Projects() {
             </div>
           </div>
 
+          <div className="filter-section">
+            <span className="filter-label">View</span>
+            <div className="filter-chips">
+              <button
+                type="button"
+                className={`filter-chip ${!favoritesOnly ? 'active' : ''}`}
+                onClick={() => setFavoritesOnly(false)}
+                aria-pressed={!favoritesOnly}
+              >
+                All projects
+              </button>
+              <button
+                type="button"
+                className={`filter-chip ${favoritesOnly ? 'active' : ''}`}
+                onClick={() => setFavoritesOnly(true)}
+                aria-pressed={favoritesOnly}
+                disabled={bookmarkCount === 0}
+                title={bookmarkCount === 0 ? 'Bookmark a project first using the star icon' : ''}
+              >
+                <span aria-hidden="true">★ </span>
+                Favorites only{bookmarkCount > 0 ? ` (${bookmarkCount})` : ''}
+              </button>
+            </div>
+          </div>
+
           {hasFilters && (
             <Button variant="outline-danger" size="sm" className="clear-filters-btn mb-2" onClick={clearFilters}>
               Clear All Filters
@@ -112,11 +144,15 @@ function Projects() {
                 key={project.id}
                 project={project}
                 onClick={() => setSelectedProject(project)}
+                isBookmarked={isBookmarked(project.id)}
+                onToggleBookmark={toggleBookmark}
               />
             ))
           ) : (
             <p className="projects-empty">
-              No projects match your filters. Try adjusting your search or filters.
+              {favoritesOnly && bookmarkCount === 0
+                ? 'No favorites yet. Click the star on any project card to bookmark it.'
+                : 'No projects match your filters. Try adjusting your search or filters.'}
             </p>
           )}
         </div>

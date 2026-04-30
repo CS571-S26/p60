@@ -1,0 +1,154 @@
+.cp-backdrop {
+  background-color: var(--color-overlay) !important;
+  backdrop-filter: blur(4px);
+}
+
+.cp-dialog {
+  max-width: 640px;
+  margin-top: 12vh;
+}
+
+.cp-content {
+  background: var(--color-bg-card) !important;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 24px 64px var(--color-shadow-lg);
+  overflow: hidden;
+}
+
+.cp-search-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+}
+
+.cp-search-icon {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.cp-input.form-control {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 1rem;
+  color: var(--color-text) !important;
+  padding: 4px 0;
+  flex: 1;
+}
+
+.cp-input.form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.cp-input.form-control::placeholder {
+  color: var(--color-text-muted);
+}
+
+.cp-kbd-hint {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  background: var(--color-bg-secondary);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+  letter-spacing: 0.05em;
+}
+
+.cp-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.cp-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.12s ease;
+  color: var(--color-text);
+}
+
+.cp-item.active {
+  background: var(--color-primary-light);
+  color: var(--color-primary-hover);
+}
+
+[data-theme="dark"] .cp-item.active {
+  background: var(--color-primary-light);
+  color: #cbd5ff;
+}
+
+.cp-item-label {
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.cp-item-hint {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  background: var(--color-bg-secondary);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.cp-item.active .cp-item-hint {
+  background: var(--color-bg-card);
+  color: var(--color-primary);
+}
+
+.cp-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+}
+
+.cp-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-secondary);
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+
+.cp-footer kbd {
+  font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.72rem;
+  margin-right: 4px;
+  color: var(--color-text);
+}
+
+@media (max-width: 640px) {
+  .cp-dialog {
+    margin-top: 6vh;
+    max-width: calc(100% - 24px);
+  }
+
+  .cp-footer {
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.7rem;
+  }
+}

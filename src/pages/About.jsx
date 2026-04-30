@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import ExperienceCard from '../components/ExperienceCard';
 import SkillBar from '../components/SkillBar';
+import ContactForm from '../components/ContactForm';
 import '../styles/about.css';
 
 const EXPERIENCES = [
@@ -154,6 +155,11 @@ function About() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="about-section fade-in">
+          <h2 className="about-section-title">Contact</h2>
+          <ContactForm />
         </div>
       </div>
     </section>

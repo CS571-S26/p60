@@ -71,6 +71,68 @@
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
 }
 
+.filter-chip:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.filter-chip:disabled:hover {
+  border-color: var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+/* Bookmark star button on each project card */
+.project-bookmark {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-bg-secondary);
+  color: var(--color-text-muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+  padding: 0;
+}
+
+.project-bookmark:hover,
+.project-bookmark:focus-visible {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  transform: scale(1.1);
+  outline: none;
+  box-shadow: 0 2px 8px var(--color-shadow-lg);
+}
+
+.project-bookmark.bookmarked {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+}
+
+.project-bookmark.bookmarked:hover,
+.project-bookmark.bookmarked:focus-visible {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+}
+
+.project-card {
+  position: relative;
+}
+
+.project-card-header {
+  padding-right: 44px; /* room for bookmark button */
+}
+
 .clear-filters-btn {
   border-radius: 20px;
   font-weight: 500;

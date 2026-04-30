@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -9,14 +9,39 @@ import '../styles/guestbook.css';
 
 const MAX_CHARS = 280;
 const REPLY_MAX = 200;
+const ENTRIES_KEY = 'portfolio-guestbook-entries-v1';
+const OWN_IDS_KEY = 'portfolio-guestbook-own-ids-v1';
+
+function loadJSON(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return fallback;
+    const parsed = JSON.parse(raw);
+    return parsed ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
 
 function Guestbook() {
-  const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState(() => loadJSON(ENTRIES_KEY, []));
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
-  const [ownIds, setOwnIds] = useState([]);
+  const [ownIds, setOwnIds] = useState(() => loadJSON(OWN_IDS_KEY, []));
   const [sortBy, setSortBy] = useState('newest');
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(ENTRIES_KEY, JSON.stringify(entries));
+    } catch { /* storage unavailable */ }
+  }, [entries]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(OWN_IDS_KEY, JSON.stringify(ownIds));
+    } catch { /* storage unavailable */ }
+  }, [ownIds]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
